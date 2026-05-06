@@ -25,16 +25,7 @@ class Logger : IDisposable
     {
         if (_disposed) return;
 
-        _writer.Flush();
-        _writer.Dispose();
+        _writer?.Dispose();
         _disposed = true;
-
-        GC.SuppressFinalize(this);
-
-    }
-
-    ~Logger()
-    {
-        Console.WriteLine("FINALIZER EXECUTADO");
     }
 }

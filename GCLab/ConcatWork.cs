@@ -9,11 +9,10 @@ static class ConcatWork
 {
     public static string Good()
     {
-        var sb = new StringBuilder(300_000);
+        var sb = new StringBuilder();
 
-        for (int i = 0; i < 50_000; i++)
+        for (int i = 0; i < 10; i++)
             sb.Append(i);
-        Console.WriteLine(sb.Length);
 
         return sb.ToString();
     }

@@ -8,22 +8,24 @@ namespace GCLab;
 class Pinner : IDisposable
 {
     private GCHandle _handle;
-    private bool _pinned;
+    private bool _disposed;
 
     public byte[] PinShortTime()
     {
         var data = new byte[256];
-        _handle = GCHandle.Alloc(data, GCHandleType.Pinned);
-        _pinned = true;
+        _handle = GCHandle.Alloc(data, GCHandleType.Pinned); // pin prolongado
         return data;
     }
 
     public void Dispose()
     {
+        if (_disposed) return;
+
         if (_handle.IsAllocated)
         {
             _handle.Free();
-            _pinned = false;
         }
+
+        _disposed = true;
     }
 }
