@@ -3,13 +3,18 @@
 // ===================================
 // 4) Concatenação de string ineficiente
 // ===================================
+using System.Text;
+
 static class ConcatWork
 {
-    public static string Bad()
+    public static string Good()
     {
-        string s = string.Empty;
+        var sb = new StringBuilder(300_000);
+
         for (int i = 0; i < 50_000; i++)
-            s += i;
-        return s;
-    }    
+            sb.Append(i);
+        Console.WriteLine(sb.Length);
+
+        return sb.ToString();
+    }
 }
